@@ -27,6 +27,7 @@ import {
     restoreFilePrompt,
     saveFilePrompt,
     transcriptFilePrompt,
+    unlink,
     write
 } from "./file";
 import { evaluate } from "./vorple";
@@ -2153,6 +2154,13 @@ function glk_fileref_get_rock(fref) {
     return fref.rock;
 }
 
+function glk_fileref_delete_file(fref) {
+    if( !fref || typeof fref.filename !== 'string' ) {
+        throw('glk_fileref_delete_file: invalid fileref');
+    }
+    return unlink(fref.filename);
+}
+
 function glk_fileref_does_file_exist(fref) {
     if( !fref || typeof fref.filename !== 'string' ) {
         throw('glk_fileref_does_file_exist: invalid fileref');
@@ -2908,7 +2916,7 @@ const GLK = {
     glk_fileref_destroy,
     glk_fileref_iterate,
     glk_fileref_get_rock,
-    // glk_fileref_delete_file : glk_fileref_delete_file,
+    glk_fileref_delete_file,
     glk_fileref_does_file_exist,
     glk_fileref_create_from_fileref,
     glk_put_char,
