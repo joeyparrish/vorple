@@ -984,8 +984,10 @@ function start_game(image) {
         if (!all_options.recording_label)
             all_options.recording_label = title;
 
+        /* The fact that Vorple prevents us from controlling this is so frustrating.  Kill it.
         if (all_options.set_page_title)
             document.title = title + " - " + all_options.engine_name;
+        */
     }
 
     /* Pass the game image file along to the VM engine. */
